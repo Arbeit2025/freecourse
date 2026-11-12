@@ -354,7 +354,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>freecourse｜無料オンライン講座カタログ＋修了証メーカー</title>
-<style>{{ css }}</style>
+<style>{{ css|safe }}</style>
 </head>
 <body>
 <div class="wrap">
@@ -497,7 +497,7 @@ CERT_TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>修了証｜{{ course.title | e }}｜freecourse</title>
-<style>{{ css }}</style>
+<style>{{ css|safe }}</style>
 </head>
 <body>
 <div class="wrap">
@@ -870,7 +870,7 @@ SEARCH_TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>横断検索｜freecourse（無料講座カタログ）</title>
-<style>{{ css }}</style>
+<style>{{ css|safe }}</style>
 </head>
 <body>
 <div class="wrap">

@@ -314,3 +314,14 @@ def test_certificate_custom_requires_title(client):
 
 def test_healthz(client):
     assert client.get("/healthz").status_code == 200
+
+
+def test_style_block_not_escaped(client):
+    """テーマ切替の回帰テスト: <style> 内の属性セレクタの引用符が
+    HTMLエスケープ（&#34;）されてダークテーマ規則が無効化されないこと。"""
+    for path in ["/", "/certificate/1?name=%E5%B1%B1%E7%94%B0%E5%A4%AA%E9%83%8E"]:
+        rv = client.get(path)
+        html = rv.get_data(as_text=True)
+        style = html.split("<style>", 1)[1].split("</style>", 1)[0]
+        assert 'data-theme="dark"' in style, path
+        assert "&#34;" not in style, path
